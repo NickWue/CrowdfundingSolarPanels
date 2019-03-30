@@ -2,14 +2,13 @@
 INT
 """
 import math
-
-x= 60                  # max. sun angle 
+              # max. sun angle 
 aroof = 20              # angle roof 
 rooflenght = 10 
 roofwidth = 5
 l =1                    #length of one solarcell
 w = 0.5                 #width of one solarcell
-day = 190
+day = 95
 lon = 51.5
 de = -23.45 * math.cos(3.14/180*360*(day+10)/365)
 
@@ -30,6 +29,9 @@ else:
 
 
 nrooflenght = math.floor(rooflenght/ (l+d))
+if ((rooflenght/ (l+d))-math.floor(rooflenght/ (l+d)))*rooflenght >l:
+    nrooflenght= nrooflenght+1
+
 nroofwidth = math.floor(roofwidth/ w)
 
 print('nummer of solarcells in length: ' + str(nrooflenght))
