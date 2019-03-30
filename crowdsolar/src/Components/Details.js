@@ -3,12 +3,18 @@ import {Form, Col, Button} from 'react-bootstrap';
 
 class Details extends Component {
   render() {
-    const style = {
-      marginLeft: "10%",
-      marginRight: "10%"
-    }
+    
+    const pageStyle = {
+        paddingTop:"100px",
+        // display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        paddingRight: "10%",
+        paddingLeft: "10%"
+      }
     return (
-      <Form style={style}>
+      <Form style={pageStyle}>
         <Form.Group controlId="details.Address">
           <Form.Label>Address</Form.Label>
           <Form.Control placeholder="Your address" />
