@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import {AppBar, Button, Toolbar} from '@material-ui/core/';
-import Landowner from './Components/Landowner/Landowner'
 import GoogleLogin from 'react-google-login';
-import Home from './Components/Home'
+import Routes from "./Routes";
+
 class App extends Component {
   
   render() {
@@ -25,11 +25,13 @@ class App extends Component {
                   onSuccess={responseGoogle}
                   onFailure={responseGoogle}
                 />
-                  <Button color="inherit" style={{marginLeft: "80%"}}  href="/login">Login</Button>
+                <Button  href="/investor" color="inherit">investor</Button>
+                <Button  href="/landowner" color="inherit">landowner</Button>
+                  <Button color="inherit"   href="/login">Login</Button>
                   
         </Toolbar>
       </AppBar>
-        <Home />
+      <Routes/>
 
     </Fragment>      
 
