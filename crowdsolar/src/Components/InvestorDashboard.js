@@ -29,7 +29,8 @@ class InvestorDashboard extends Component {
             </ListGroup>
           </Card>
           <br/>
-          <Button variant="outline-primary" size="lg" type="submit">Find new project</Button>
+          <Button onClick={() => this.props.showMap()}
+            variant="outline-primary" size="lg" type="submit">Find new project</Button>
         </div>
       );
     }
