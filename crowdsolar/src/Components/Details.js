@@ -1,40 +1,32 @@
-import React, { Component, Fragment } from 'react';
-import Form from 'react-bootstrap/Form';
+import React, { Component } from 'react';
+import {Form, Col, Button} from 'react-bootstrap';
 
 class Details extends Component {
   render() {
+    const style = {
+      marginLeft: "10%",
+      marginRight: "10%"
+    }
     return (
-
-      <Form>
-    <Form.Group controlId="exampleForm.ControlInput1">
-      <Form.Label>Email address</Form.Label>
-      <Form.Control type="email" placeholder="name@example.com" />
-    </Form.Group>
-    <Form.Group controlId="exampleForm.ControlSelect1">
-      <Form.Label>Example select</Form.Label>
-      <Form.Control as="select">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </Form.Control>
-    </Form.Group>
-    <Form.Group controlId="exampleForm.ControlSelect2">
-      <Form.Label>Example multiple select</Form.Label>
-      <Form.Control as="select" multiple>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </Form.Control>
-    </Form.Group>
-    <Form.Group controlId="exampleForm.ControlTextarea1">
-      <Form.Label>Example textarea</Form.Label>
-      <Form.Control as="textarea" rows="3" />
-    </Form.Group>
-  </Form>
+      <Form style={style}>
+        <Form.Group controlId="details.Address">
+          <Form.Label>Address</Form.Label>
+          <Form.Control placeholder="Your address" />
+          <Form.Label>Surface dimensions</Form.Label>
+          <Form.Row controlId="details.Dimensions">
+            <Col>
+              <Form.Control placeholder="Length (m)" />
+            </Col>
+            <Col>
+              <Form.Control placeholder="Width (m)" />
+            </Col>
+          </Form.Row>
+          <Form.Label>Angle</Form.Label>
+          <Form.Control placeholder="Angle of surface"/>
+          <br/>
+          <Button variant="outline-primary" size="lg" type="submit">Calculate</Button>
+        </Form.Group>
+      </Form>
 
     );
   }
