@@ -1,0 +1,28 @@
+[
+	{
+		"idsolarprojects" : 1,
+		"name" : "Crazy Solar Project in portugal",
+		"street" : "R. Sao Nicolau 13",
+		"city" : "Lisbon",
+		"countryID" : 4,
+		"dimX" : 10,
+		"dimY" : 10,
+		"userID" : "1",
+		"status" : null,
+		"funding_required" : null,
+		"funding_received" : null
+	},
+	{
+		"idsolarprojects" : 2,
+		"name" : "Great Returns in Rome",
+		"street" : "Petersplace",
+		"city" : "Rome",
+		"countryID" : 6,
+		"dimX" : 7,
+		"dimY" : 15,
+		"userID" : "farmerguy24@gmail.com",
+		"status" : null,
+		"funding_required" : null,
+		"funding_received" : null
+	}
+]
