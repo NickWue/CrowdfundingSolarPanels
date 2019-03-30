@@ -14,19 +14,11 @@ class StartProject extends Component {
     });
   }
   render() {
-    const pageStyle = {
-        paddingTop:"100px",
-        // display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        paddingRight: "10%",
-        paddingLeft: "10%"
-    }
+    
 
     return (
 
-      <Form style={pageStyle}>
+      <Form >
     
         <Form.Group>
           <Form.Label>Address</Form.Label>
@@ -44,7 +36,7 @@ class StartProject extends Component {
           <Form.Label >Angle</Form.Label>
           <Form.Control controlId="StartProject.Angle" onChange={this.handleChange} id="angle"  placeholder="Angle of surface"/>
           <br/>
-          <Button onClick={() => this.props.setParams(this.state.address, this.state.length, this.state.width, this.state.angle)}controlId="StartProject.Calculate" variant="outline-primary" size="lg" type="submit">Calculate</Button>
+          <Button onClick={() => this.props.setRoofParams(this.state.address, this.state.length, this.state.width, this.state.angle)}controlId="StartProject.Calculate" variant="outline-primary" size="lg" type="submit">Calculate</Button>
         </Form.Group>
       </Form>
 
