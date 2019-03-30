@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StartProject from './StartProject'
-import Calculation from '../Calculation'
+import Calculation from './Calculation'
 
 class Landowner extends Component {
   state = {
