@@ -6,10 +6,30 @@ import GoogleLogin from 'react-google-login';
 import Routes from "./Routes";
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      loggedIn: false ,
+      email: null,
+      name: null,
+      googleId: null
+    };
+  }
   
+  loginSuccess = resp => {
+    this.setState({ loggedIn: true,
+                  email:resp.profileObj.email, 
+                  name: resp.profileObj.name,
+                  googleId: resp.profileObj.googleId  })
+  console.log(resp);
+
+  }
+
   render() {
-    const responseGoogle = (response) => {
-      console.log(response);
+    const loginStyle ={
+      position: "absolute",
+      right: 10
+
     }
     
     return (
@@ -19,12 +39,15 @@ class App extends Component {
           <Button  href="/" color="inherit">Home</Button>
           <Button href="/investor" color="inherit">investor</Button>
           <Button href="/landowner" color="inherit">landowner</Button>
-          <GoogleLogin
+          <div style={loginStyle}>
+          {this.state.loggedIn ? <Button href="/user" color="inherit">{this.state.name}</Button>
+          : <GoogleLogin
             clientId="497920862748-l7vlamhek0bf2e6qhghvnctckljev5qf.apps.googleusercontent.com"
             buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-          />
+            onSuccess={this.loginSuccess}
+            onFailure={null}
+          />}
+          </div>
         </Toolbar>
       </AppBar>
 
