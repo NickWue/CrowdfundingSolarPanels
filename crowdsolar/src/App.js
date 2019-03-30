@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 //import logo from './logo.svg';
 import './App.css';
 import {AppBar, Button, Toolbar} from '@material-ui/core/';
-import Landowner from './Components/Landowner'
+import Landowner from './Components/Landowner/Landowner'
 import GoogleLogin from 'react-google-login';
 import Home from './Components/Home'
 class App extends Component {
