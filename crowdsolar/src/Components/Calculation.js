@@ -4,12 +4,12 @@ import Slider from '@material-ui/lab/Slider';
 
 class Calculation extends Component {
     state = {
-        value: 3,
+        value: this.props.totalValue/2 ,
       };
     handleChange = (event, value) => {
     this.setState({ value });
     };
-    
+
   render() {
     
     const pageStyle = {
@@ -24,16 +24,22 @@ class Calculation extends Component {
     return (
       <Form style={pageStyle}>
         <Form.Group controlId="details.Address">
-          <Form.Label>Estimated Price</Form.Label>
-          <Form.Label>{this.props.estimatedPrice}</Form.Label>
+          <Form.Label>Estimated Total Price</Form.Label>
+          <br/>
+          <Form.Label>{ "$"  + this.props.totalValue}</Form.Label>
           <Slider
           value={this.state.value}
           min={0}
-          max={6}
+          max={this.props.totalValue}
           step={1}
           onChange={this.handleChange}
         />
-          <br/>
+        <br/>
+        <Form.Label>Your investment: ${this.props.totalValue - this.state.value}</Form.Label>
+        <br/>
+          <Form.Label>Crowd investment: ${this.state.value}</Form.Label>
+            <br/>
+          
           <Button variant="outline-primary" size="lg" type="submit">Submit preferences</Button>
         </Form.Group>
 
