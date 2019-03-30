@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StartProject from './StartProject'
 import Calculation from './Calculation'
+import home from './home.jpg'
+
 class Landowner extends Component {
   state = {
     stage: "start",
@@ -80,7 +82,9 @@ class Landowner extends Component {
         justifyContent: 'space-around',
         overflow: 'hidden',
         paddingRight: "10%",
-        paddingLeft: "10%"
+        paddingLeft: "10%",
+        backgroundImage: `url(${home})`,
+        backgroundSize:"100%",
       }
     return (
     <div style={pageStyle}>
