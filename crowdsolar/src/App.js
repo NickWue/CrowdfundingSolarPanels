@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+//import logo from './logo.svg';
 import './App.css';
 import Details from './Components/Details'
 import AppBar from '@material-ui/core/AppBar';
@@ -21,6 +21,11 @@ class App extends Component {
         </Toolbar>
       </AppBar>
       
+      <div>
+        <Details></Details>
+      </div>
+      
+
     );
   }
 }
