@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import {Form, Col, Button} from 'react-bootstrap';
+import Slider from '@material-ui/lab/Slider';
 
 class Calculation extends Component {
+    state = {
+        value: 3,
+      };
+    handleChange = (event, value) => {
+    this.setState({ value });
+    };
+    
   render() {
     
     const pageStyle = {
@@ -16,21 +24,17 @@ class Calculation extends Component {
     return (
       <Form style={pageStyle}>
         <Form.Group controlId="details.Address">
-          <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="Your address" />
-          <Form.Label>Surface dimensions</Form.Label>
-          <Form.Row controlId="details.Dimensions">
-            <Col>
-              <Form.Control placeholder="Length (m)" />
-            </Col>
-            <Col>
-              <Form.Control placeholder="Width (m)" />
-            </Col>
-          </Form.Row>
-          <Form.Label>Angle</Form.Label>
-          <Form.Control placeholder="Angle of surface"/>
+          <Form.Label>Estimated Price</Form.Label>
+          <Form.Label>{this.props.estimatedPrice}</Form.Label>
+          <Slider
+          value={this.state.value}
+          min={0}
+          max={6}
+          step={1}
+          onChange={this.handleChange}
+        />
           <br/>
-          <Button variant="outline-primary" size="lg" type="submit">Calculate</Button>
+          <Button variant="outline-primary" size="lg" type="submit">Submit preferences</Button>
         </Form.Group>
 
       </Form>
