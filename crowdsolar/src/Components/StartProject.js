@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import {Form, Col, Button} from 'react-bootstrap';
 
-class Details extends Component {
+class StartProject extends Component {
   render() {
-    
     const pageStyle = {
         paddingTop:"100px",
         // display: 'flex',
@@ -12,14 +11,15 @@ class Details extends Component {
         overflow: 'hidden',
         paddingRight: "10%",
         paddingLeft: "10%"
-      }
+    }
+
     return (
       <Form style={pageStyle}>
-        <Form.Group controlId="details.Address">
+        <Form.Group>
           <Form.Label>Address</Form.Label>
-          <Form.Control placeholder="Your address" />
+          <Form.Control controlId="StartProject.Address" placeholder="Your address" />
           <Form.Label>Surface dimensions</Form.Label>
-          <Form.Row controlId="details.Dimensions">
+          <Form.Row controlId="StartProject.Dimensions">
             <Col>
               <Form.Control placeholder="Length (m)" />
             </Col>
@@ -27,10 +27,10 @@ class Details extends Component {
               <Form.Control placeholder="Width (m)" />
             </Col>
           </Form.Row>
-          <Form.Label>Angle</Form.Label>
-          <Form.Control placeholder="Angle of surface"/>
+          <Form.Label >Angle</Form.Label>
+          <Form.Control controlId="StartProject.Angle" placeholder="Angle of surface"/>
           <br/>
-          <Button variant="outline-primary" size="lg" type="submit">Calculate</Button>
+          <Button controlId="StartProject.Calculate" variant="outline-primary" size="lg" type="submit">Calculate</Button>
         </Form.Group>
       </Form>
 
@@ -38,4 +38,4 @@ class Details extends Component {
   }
 }
 
-export default Details;
+export default StartProject;
