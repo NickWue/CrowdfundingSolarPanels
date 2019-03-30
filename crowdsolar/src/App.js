@@ -14,27 +14,23 @@ class App extends Component {
     
     return (
       <Fragment >
-
-
-      <AppBar   position="fixed">
+      <AppBar position="fixed">
         <Toolbar>
-                  <Button  href="/" color="inherit">Home</Button>
-                  <GoogleLogin
-                  clientId="497920862748-l7vlamhek0bf2e6qhghvnctckljev5qf.apps.googleusercontent.com"
-                  buttonText="Login"
-                  onSuccess={responseGoogle}
-                  onFailure={responseGoogle}
-                />
-                <Button  href="/investor" color="inherit">investor</Button>
-                <Button  href="/landowner" color="inherit">landowner</Button>
-                  <Button color="inherit"   href="/login">Login</Button>
-                  
+          <Button  href="/" color="inherit">Home</Button>
+          <Button href="/investor" color="inherit">investor</Button>
+          <Button href="/landowner" color="inherit">landowner</Button>
+          <GoogleLogin
+            clientId="497920862748-l7vlamhek0bf2e6qhghvnctckljev5qf.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+          />
         </Toolbar>
       </AppBar>
+
       <Routes/>
-
-    </Fragment>      
-
+    
+    </Fragment>
     );
   }
 }
