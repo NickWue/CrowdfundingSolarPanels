@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
+import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+
+const MapWithMarker = withGoogleMap(props =>
+  <GoogleMap defaultZoom={8} defaultCenter={{lat: -34.397, lng: 150.644 }}>
+    <Marker position={{ lat: -34.397, lng: 150.644 }} />
+  </GoogleMap>  
+);
 
 class InvestorMap extends Component {
     render() {
@@ -16,6 +22,10 @@ class InvestorMap extends Component {
       return (
         <div style={pageStyle}>
           <h1>Find new project</h1>
+            <MapWithMarker
+              containerElement={<div style={{ height: `400px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
         </div>
       );
     }
