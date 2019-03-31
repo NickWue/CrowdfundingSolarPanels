@@ -7,16 +7,23 @@ import {Button} from 'react-bootstrap';
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      userType: ""
+    };
   }
   checkUserStatus = email => {
     var userFound = false
+    var userType = null
     this.props.users.forEach(user => {
       if(user.idusers === email){
         userFound = true
+        userType =  user.type
       }
     });
-    return userFound
+
+    
+
+    return [userFound, userType]
   }
 
   addUser = (type, description) => {
@@ -25,31 +32,23 @@ class Home extends Component {
     '&name=' + this.props.name +
     '&type=' + type +
     '&desribtion=' + description
-  );
+  )
+  .then(data => console.log(data));
+  this.props.history.push('/'+description)
   }
 
-  sendProject = (project, lat, lng) => {
-    fetch('http://x10z.de/crowdsolar/addProject/' +
-      '?name=' + project.name +
-      '&street=nameofthestreet2' +
-      '&countryID=' + project.country +
-      '&dimX=' + project.length +
-      '&dimY=' + project.width +
-      '&userid=' + this.props.email +
-      '&funding_required=5000' +
-      '&funding_recieved=0' +
-      '&expectedreturn=8'
-    )
-  }
+
 
   getInitial = () =>{
     return (
       <Fragment>
-        <Button onClick={() => this.addUser(2, "Investor")} href="/investor" variant="outline-primary" size="lg">Join as an Investor</Button>
-        <Button onClick={() => this.addUser(1, "Landowner")} href="/landowner" variant="outline-primary" size="lg">Join as a Landowner</Button>
+        <Button onClick={() => this.addUser(2, "investor")}  variant="outline-primary" size="lg">Join as an Investor</Button>
+        <Button onClick={() => this.addUser(1, "landowner")}  variant="outline-primary" size="lg">Join as a Landowner</Button>
       </Fragment>
     )
   }
+
+
   render() {
     const pageStyle = {
         paddingTop:"100px",
@@ -79,7 +78,7 @@ class Home extends Component {
         
       </Container>
       <div style={pageStyle}>
-      {this.props.loggedIn ? this.checkUserStatus(this.props.email) ? <Button href={() => this.getDash()}>Go to dashboard</Button> : this.getInitial() : <p>Please use the login button in the top right</p>}
+      {this.props.loggedIn ? this.checkUserStatus(this.props.email)[0] ? this.checkUserStatus(this.props.email)[1]  === "1" ? <Button href="/landowner">Go to landowner dashboard</Button> : <Button href="/investor">Go to investor dashboard</Button>  : this.getInitial() : <p>Please use the login button in the top right</p>}
      </div>
      </Fragment>
     );
