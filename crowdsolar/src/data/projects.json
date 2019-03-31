@@ -9,8 +9,8 @@
 		"dimY" : 10,
 		"userID" : "1",
 		"status" : null,
-		"funding_required" : null,
-		"funding_received" : null,
+		"funding_required" : 10000,
+		"funding_received" : 5000,
 		"lat": 38.736,
 		"lng": -9.142
 	},
@@ -24,8 +24,8 @@
 		"dimY" : 15,
 		"userID" : "farmerguy24@gmail.com",
 		"status" : null,
-		"funding_required" : null,
-		"funding_received" : null,
+		"funding_required" : 8000,
+		"funding_received" : 300,
 		"lat": 41.9,
 		"lng": 12.483
 	}

@@ -21,8 +21,7 @@ class Home extends Component {
       }
     
     return (
-    <img style={{maxWidth: "100%"}} src={home}></img>
-
+      <img style={{maxWidth: "100%"}} src={home} alt=""></img>
     );
   }
 }

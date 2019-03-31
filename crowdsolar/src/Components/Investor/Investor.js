@@ -7,7 +7,7 @@ class Investor extends Component {
     stage: "dashboard",
   };
 
-  handleChange = event => {
+  handleChange = event => {   // TODO: NOT USED
     this.setState({
       [event.target.id]: event.target.value
     });
