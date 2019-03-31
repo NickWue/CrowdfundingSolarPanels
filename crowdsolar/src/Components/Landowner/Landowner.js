@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LandownerWelcome from './LandownerWelcome';
 import StartProject from './StartProject';
 import Calculation from './Calculation';
+import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
+
 
 class Landowner extends Component {
   constructor(props){
@@ -72,6 +74,25 @@ class Landowner extends Component {
     });
   }
 
+  getProjectCard = () => {
+    var project = this.state.project;
+
+    console.log(project)
+    return(
+      <Card style={{width: '50%'}}>
+        <Card.Body>
+          <Card.Title> Success!</Card.Title>
+          <Card.Text>Name: {project.name}</Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroupItem>Number of solar cells: {this.state.financial_detail.nsolarcells}</ListGroupItem>
+          <ListGroupItem>Funding required: {this.state.crowdCost}$</ListGroupItem>
+          <ListGroupItem>ROI 10 years: {this.state.financial_detail.roi10years}%</ListGroupItem>
+        </ListGroup>
+      </Card>
+      
+    );
+  }
 
   getPage = stage => {
     switch(stage) {
@@ -80,9 +101,9 @@ class Landowner extends Component {
       case 'start':
         return(<StartProject setProjectDetails={this.setProjectDetails}/>)
       case 'calculation':
-        return(<Calculation setCost={this.setCost} totalValue={this.state.financial_detail.Cost}/>)
+        return(<Calculation setCost={this.setCost} totalValue={parseInt(this.state.financial_detail.Cost)}/>)
       case 'final':
-        return(JSON.stringify(this.state));
+        return(this.getProjectCard());
       default:
         return null;
     }
