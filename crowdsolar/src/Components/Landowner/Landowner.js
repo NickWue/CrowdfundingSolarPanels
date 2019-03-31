@@ -30,21 +30,7 @@ class Landowner extends Component {
     })
   }
 
-   sendProject =   (project) => {
-    
-   
-  }
-
-  getProjectFinance = (project) => {
-    
-  }
-
   setProjectDetails = async (project) => {
-    // this.getProjectFinance(project)
-    
-    
-    // this.sendProject(project)
-
     var financial_detail;
     await fetch('http://x10z.de/crowdsolar/getProjectFinancials/' +
     '?country=' + project.country +
@@ -53,28 +39,32 @@ class Landowner extends Component {
     .then(response => response.json())
     .then(data => financial_detail = data)
 
-   await fetch('http://x10z.de/crowdsolar/addProject/' +
-    '?name=' + project.name +
-    '&street=none' +
-    '&city=' + 'berlin' +
-    '&countryID=' + project.country +
-    '&dimX=' + project.length +
-    '&dimY=' + project.width +
-    '&userid=' + this.props.email +
-    '&funding_required=' + financial_detail.Cost +
-    '&funding_recieved=0' +
-    '&expectedreturn=' + financial_detail.roi10years
-  )
-  .then(data => console.log(data))
-  this.setState({
-    stage: "calculation",
-    project: project,
-    financial_detail: financial_detail
-  });
+    
+    this.setState({
+      stage: "calculation",
+      project: project,
+      financial_detail: financial_detail
+    });
     
   }
 
-  setCost = (ownerCost, crowdCost) => {
+  setCost = async (ownerCost, crowdCost) => {
+    const project = this.state.project;
+    const financial_detail = this.state.financial_detail;
+
+    await fetch('http://x10z.de/crowdsolar/addProject/' +
+      '?name=' + project.name +
+      '&street=none' +
+      '&city=none' +
+      '&countryID=' + project.country +
+      '&dimX=' + project.length +
+      '&dimY=' + project.width +
+      '&userid=' + this.props.email +
+      '&funding_required=' + crowdCost +
+      '&funding_recieved=0' +
+      '&expectedreturn=' + financial_detail.roi10years
+    )
+    .then(data => console.log(data));
     this.setState({
       stage:"final",
       ownerCost: ownerCost,
@@ -92,7 +82,7 @@ class Landowner extends Component {
       case 'calculation':
         return(<Calculation setCost={this.setCost} totalValue={this.state.financial_detail.Cost}/>)
       case 'final':
-        return('Success!');
+        return(JSON.stringify(this.state));
       default:
         return null;
     }
