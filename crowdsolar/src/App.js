@@ -13,7 +13,11 @@ class App extends Component {
       this.state = {loggedIn: false ,
         email: "",
         name: "",
-        googleId: "" };
+        googleId: "",
+        users: [],
+        projects: [],
+        countries: []
+        };
     
     
 
@@ -30,6 +34,16 @@ class App extends Component {
     fetch('http://x10z.de/crowdsolar/getUser/')
     .then(response => response.json())
     .then(data => this.setState({ users: data }));
+  }
+  getProjectsData = () => {
+    fetch('http://x10z.de/crowdsolar/getProjects/')
+    .then(response => response.json())
+    .then(data => this.setState({ projects: data }));
+  }
+  getCountriesData = () => {
+    fetch('http://x10z.de/crowdsolar/getCountries/')
+    .then(response => response.json())
+    .then(data => this.setState({ countries: data }));
   }
 
   loginSuccess = resp => {
@@ -68,7 +82,10 @@ class App extends Component {
       loggedIn: this.state.loggedIn ,
       email: this.state.email,
       name: this.state.name,
-      googleId: this.state.googleId
+      googleId: this.state.googleId,
+      users: this.state.users,
+      countries: this.state.countries,
+      projects: this.state.projects
     }
     return (
       <Fragment >
