@@ -4,6 +4,7 @@ import './App.css';
 import {AppBar, Button, Toolbar} from '@material-ui/core/';
 import GoogleLogin from 'react-google-login';
 import Routes from "./Routes";
+import UserProfile from './UserProfile';
 
 class App extends Component {
   constructor(props){
@@ -15,7 +16,9 @@ class App extends Component {
       googleId: null
     };
   }
-  
+  async componentDidMount() {
+    
+  }
   loginSuccess = resp => {
     this.setState({ loggedIn: true,
                   email:resp.profileObj.email, 
@@ -31,7 +34,12 @@ class App extends Component {
       right: 10
 
     }
-    
+    var loginProps = {
+      loggedIn: this.state.loggedIn ,
+      email: this.state.email,
+      name: this.state.name,
+      googleId: this.state.googleId
+    }
     return (
       <Fragment >
       <AppBar position="fixed">
@@ -51,7 +59,7 @@ class App extends Component {
         </Toolbar>
       </AppBar>
 
-      <Routes/>
+      <Routes loginProps={loginProps}/>
     
     </Fragment>
     );

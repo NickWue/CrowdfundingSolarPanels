@@ -3,17 +3,19 @@ import {Form, Button} from 'react-bootstrap';
 import Slider from '@material-ui/lab/Slider';
 
 class Calculation extends Component {
-  state = {
-    crowdCost: this.props.totalValue/2,
-    ownerCost: this.props.totalValue/2,
-  };
-  
-  handleChange = (event, crowdCost) => {  // Do you need event? Also, can we rename handleChange to changeSlider?
-    this.setState({
-      crowdCost: crowdCost,
-      ownerCost: this.props.totalValue - crowdCost
-    });
-  };
+
+  constructor(props){
+    super(props)
+    this.state = {
+      crowdCost: this.props.totalValue/2 ,
+      ownerCost: this.props.totalValue/2,
+    };
+  }
+    
+    handleChange = (_, crowdCost) => {
+    this.setState({ crowdCost: crowdCost, ownerCost: this.props.totalValue - crowdCost});
+    };
+
 
   render() {
     return (

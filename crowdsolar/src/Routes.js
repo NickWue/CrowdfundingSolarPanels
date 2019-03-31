@@ -1,12 +1,13 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Home.js";
 import Landowner from "./Components/Landowner/Landowner"
 import Investor from "./Components/Investor/Investor"
-
-export default () =>
+import AppliedRoute from './AppliedRoute'
+export default ({loginProps}) =>
   <Switch>
-    <Route path="/investor" exact component={Investor} />
-    <Route path="/landowner" exact component={Landowner} />
-    <Route path="/" exact component={Home} />
+    <AppliedRoute path="/investor" exact component={Investor} props={loginProps}/>
+    <AppliedRoute path="/landowner" exact component={Landowner} props={loginProps}/>
+    <AppliedRoute path="/" exact component={Home} props={loginProps}/>
+    <Route component={null} />
   </Switch>;

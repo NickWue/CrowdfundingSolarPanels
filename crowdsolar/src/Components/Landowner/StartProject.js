@@ -3,12 +3,17 @@ import {Form, Col, Button} from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 
 class StartProject extends Component {
-  state = {
-    country: "Jamaica",
-    length: "",
-    width: "",
-    angle: ""
-  };
+
+  constructor(props){
+    super(props)
+    this.state = {
+      country: "Jamaica" ,
+      length: "",
+      width: "",
+      angle: ""
+    };
+  }
+  
 
   handleChange = event => {
     this.setState({

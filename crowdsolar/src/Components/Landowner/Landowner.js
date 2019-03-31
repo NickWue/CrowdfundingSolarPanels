@@ -3,15 +3,18 @@ import StartProject from './StartProject'
 import Calculation from './Calculation'
 
 class Landowner extends Component {
-  state = {
-    stage: "start",
-    country: "" ,
-    length: "",
-    width: "",
-    angle: "",
-    ownerCost: 0,
-    crowdCost: 0
-  };
+  constructor(props){
+    super(props)
+    this.state = {
+      stage: "start",
+      country: "" ,
+      length: "",
+      width: "",
+      angle: "",
+      ownerCost: 0,
+      crowdCost: 0
+    };
+  }
 
   handleChange = event => {
     this.setState({
