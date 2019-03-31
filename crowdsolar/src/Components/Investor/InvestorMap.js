@@ -52,11 +52,11 @@ class InvestorMap extends Component {
         <Card style={{width: '100%'}}>
           <Card.Body>
             <Card.Title> {project.name}</Card.Title>
-            <Card.Text>This project is in {project.country}.</Card.Text>
+            <Card.Text>Expected annual return: {project.expectedannualreturn}.</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             {/* <ListGroupItem>Status: {project.status}</ListGroupItem> */}
-            <ListGroupItem>Funding required: {project.funding_required}$</ListGroupItem>
+            <ListGroupItem>Funding required: {project.funding_requiered}$</ListGroupItem>
             <ListGroupItem>Funding received: {project.funding_received}$</ListGroupItem>
             <ListGroupItem>Return on investment: ...</ListGroupItem>
             <ListGroupItem>Amount to invest: <Form.Control onChange={this.handleChangea} id="investing" placeholder="enter $ amount here"/></ListGroupItem>
