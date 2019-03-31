@@ -1,0 +1,56 @@
+[
+	{
+		"idcountries" : 1,
+		"countryname" : "Jamaica",
+		"sunnyhours" : 2600,
+		"proportionoffullloadhours" : 65,
+		"electricprice" : 0.44,
+		"costforinstalation" : 250,
+		"costforonemodule" : 300
+	},
+	{
+		"idcountries" : 2,
+		"countryname" : "Philippines",
+		"sunnyhours" : 2105,
+		"proportionoffullloadhours" : 55,
+		"electricprice" : 0.18,
+		"costforinstalation" : 220,
+		"costforonemodule" : 300
+	},
+	{
+		"idcountries" : 3,
+		"countryname" : "Peru",
+		"sunnyhours" : 1230,
+		"proportionoffullloadhours" : 45,
+		"electricprice" : 0.18,
+		"costforinstalation" : 550,
+		"costforonemodule" : 300
+	},
+	{
+		"idcountries" : 4,
+		"countryname" : "Portugal",
+		"sunnyhours" : 2799,
+		"proportionoffullloadhours" : 45,
+		"electricprice" : 0.25,
+		"costforinstalation" : 700,
+		"costforonemodule" : 333
+	},
+	{
+		"idcountries" : 5,
+		"countryname" : "Germany",
+		"sunnyhours" : 1700,
+		"proportionoffullloadhours" : 30,
+		"electricprice" : 0.35,
+		"costforinstalation" : 1000,
+		"costforonemodule" : 333
+	},
+	{
+		"idcountries" : 6,
+		"countryname" : "Italy",
+		"sunnyhours" : 2370,
+		"proportionoffullloadhours" : 45,
+		"electricprice" : 0.28,
+		"costforinstalation" : 750,
+		"costforonemodule" : 333
+	}
+]

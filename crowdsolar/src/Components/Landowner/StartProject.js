@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {Form, Col, Button} from 'react-bootstrap';
+import ReactDOM from 'react-dom'
 
 class StartProject extends Component {
   state = {
-    address: "" ,
+    country: "Jamaica" ,
     length: "",
     width: "",
     angle: ""
@@ -21,9 +22,17 @@ class StartProject extends Component {
       <Form >
     
         <Form.Group>
-          <Form.Label>Address</Form.Label>
-          <Form.Control onChange={this.handleChange} id="address" placeholder="Your address" />
-          
+          <Form.Label>Country</Form.Label>
+          <Form.Control id="country" onChange={this.handleChange} as="select">
+            <option value="Jamaica">Jamaica</option>
+            <option value="Philippines">Philippines</option>
+            <option value="Peru">Peru</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Germany">Germany</option>
+            <option value="Italy">Italy</option>
+          </Form.Control>
+
+
           <Form.Label>Surface dimensions</Form.Label>
           <Form.Row controlId="StartProject.Dimensions">
             <Col>
@@ -36,7 +45,7 @@ class StartProject extends Component {
           <Form.Label >Angle</Form.Label>
           <Form.Control controlId="StartProject.Angle" onChange={this.handleChange} id="angle"  placeholder="Angle of surface"/>
           <br/>
-          <Button onClick={() => this.props.setParams(this.state.address, this.state.length, this.state.width, this.state.angle)}
+          <Button onClick={() => this.props.setRoofParams(this.state.country, this.state.length, this.state.width, this.state.angle)}
             controlId="StartProject.Calculate" variant="outline-primary" size="lg" type="submit">Calculate</Button>
         </Form.Group>
       </Form>

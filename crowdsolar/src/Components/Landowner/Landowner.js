@@ -5,7 +5,7 @@ import Calculation from './Calculation'
 class Landowner extends Component {
   state = {
     stage: "start",
-    address: "" ,
+    country: "" ,
     length: "",
     width: "",
     angle: "",
@@ -18,9 +18,9 @@ class Landowner extends Component {
     });
   }
 
-  setRoofParams = (address, length, width, angle) =>{
+  setRoofParams = (country, length, width, angle) =>{
       this.setState({   stage: "calculation",
-                        address: address, 
+                        country: country, 
                         length: length,
                         width: width,
                         angle: angle})
@@ -68,7 +68,7 @@ class Landowner extends Component {
         case 'calculation':
             return(<Calculation setCost={this.setCost} totalValue={5000}/>)
         case 'final':
-            return(this.state.ownerCost);
+            return(this.state.country);
         default:
             return null;
     }
