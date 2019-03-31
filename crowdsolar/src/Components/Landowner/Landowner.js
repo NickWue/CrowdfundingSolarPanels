@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import StartProject from './StartProject'
-import Calculation from './Calculation'
+import LandownerWelcome from './LandownerWelcome';
+import StartProject from './StartProject';
+import Calculation from './Calculation';
 
 class Landowner extends Component {
   constructor(props){
     super(props)
     this.state = {
-      stage: "start",
+      stage: "welcome",
       country: "" ,
       length: "",
       width: "",
@@ -20,6 +21,12 @@ class Landowner extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+  }
+
+  setStart = () => {
+    this.setState({
+      stage: "start"
+    })
   }
 
   setRoofParams = (country, length, width, angle) => {
@@ -70,6 +77,8 @@ class Landowner extends Component {
 
   getPage = stage => {
     switch(stage) {
+      case 'welcome':
+        return(<LandownerWelcome startProject={this.setStart}/>)
       case 'start':
         return(<StartProject setRoofParams={this.setRoofParams}/>)
       case 'calculation':
