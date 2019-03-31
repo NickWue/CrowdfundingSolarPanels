@@ -8,10 +8,15 @@ class Landowner extends Component {
     super(props)
     this.state = {
       stage: "welcome",
-      country: "" ,
+
+      name: "",
+      description: "",
+      country: "",
+      city: "",
       length: "",
       width: "",
       angle: "",
+
       ownerCost: 0,
       crowdCost: 0
     };
@@ -29,13 +34,17 @@ class Landowner extends Component {
     })
   }
 
-  setRoofParams = (country, length, width, angle) => {
+  setProjectDetails = (project) => {
     this.setState({
       stage: "calculation",
-      country: country, 
-      length: length,
-      width: width,
-      angle: angle
+
+      name: project.name,
+      description: project.description,
+      country: project.country,
+      city: project.city,
+      length: project.length,
+      width: project.width,
+      angle: project.angle
     });                
   }
 
@@ -80,7 +89,7 @@ class Landowner extends Component {
       case 'welcome':
         return(<LandownerWelcome startProject={this.setStart}/>)
       case 'start':
-        return(<StartProject setRoofParams={this.setRoofParams}/>)
+        return(<StartProject setProjectDetails={this.setProjectDetails}/>)
       case 'calculation':
         return(<Calculation setCost={this.setCost} totalValue={5000}/>)
       case 'final':
