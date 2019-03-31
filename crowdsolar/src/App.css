@@ -1,3 +1,50 @@
+header{
+    background-color: transparent!important;
+    box-shadow: none!important;
+}
+
+header button {
+    position: absolute;
+    right: 15px;
+    width:250px;
+    top: -15px!important;
+}
+
+#explaination{
+    padding-top:50px!important;
+}
+
+#slogan p{
+    margin:0 auto;
+    text-align:center;
+}
+
+#slogan{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    font-size: 30px;
+    color: white;
+    font-family: barlow;
+}
+
+.notthehomepageheader{
+    background:#28567f;
+    height:70px;
+}
+
+#main-frame{
+    background-image:url("./Components/home.jpg");
+    width:100%!important;
+    max-width:100%!important;
+    background-position: center center;
+    height: 600px;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }

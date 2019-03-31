@@ -65,20 +65,16 @@ class Home extends Component {
     
     return (
       <Fragment>
-      <Container style={pageStyle}>
-        <Row>
-          <Image src={crowdsolar} fluid />
+      <Container id="main-frame">
+
+        <Row id="slogan">
+          <p>Invest in solar panel projects in regions that actually make sense.</p>
         </Row>
-        <Row>
-          <p>We match investors looking for climate impact with landowners.</p>
-        </Row>
-        <Row>
-          <p>Join us!</p>
-        </Row>
+
         
       </Container>
-      <div style={pageStyle}>
-      {this.props.loggedIn ? this.checkUserStatus(this.props.email)[0] ? this.checkUserStatus(this.props.email)[1]  === "1" ? <Button href="/landowner">Go to landowner dashboard</Button> : <Button href="/investor">Go to investor dashboard</Button>  : this.getInitial() : <p>Please use the login button in the top right</p>}
+      <div style={pageStyle} id="explaination">
+      {this.props.loggedIn ? this.checkUserStatus(this.props.email)[0] ? this.checkUserStatus(this.props.email)[1]  === "1" ? <Button href="/landowner">Go to landowner dashboard</Button> : <Button href="/investor">Go to investor dashboard</Button>  : this.getInitial() : <p>We at CrowdSolar want to change the way the world invests in clean solar energy. We match investors with land owners who offer just the right piece of land. Solar Projects in developing countries close to the equator not only promise a higher return of investment, but also enables these countries to develop faster and  to be more sustainable. <br/><br/>Where ever you are looking for a solar project, even if it is in your own country, because you life in that small rented flat but still care about the environment, or if you really want to get these returns up to 200% in 10 years by investing in Jamaican projects.. It’s up to you! <br/><br/>Join our platform today!    </p>}
      </div>
      </Fragment>
     );
