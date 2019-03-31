@@ -3,24 +3,27 @@ import {Form, Col, Button} from 'react-bootstrap';
 import ReactDOM from 'react-dom'
 
 class StartProject extends Component {
-  state = {
-    country: "Jamaica" ,
-    length: "",
-    width: "",
-    angle: ""
-  };
+
+  constructor(props){
+    super(props)
+    this.state = {
+      country: "Jamaica" ,
+      length: "",
+      width: "",
+      angle: ""
+    };
+  }
+  
+
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   }
+
   render() {
-    
-
     return (
-
-      <Form >
-    
+      <Form>
         <Form.Group>
           <Form.Label>Country</Form.Label>
           <Form.Control id="country" onChange={this.handleChange} as="select">
@@ -32,14 +35,13 @@ class StartProject extends Component {
             <option value="Italy">Italy</option>
           </Form.Control>
 
-
           <Form.Label>Surface dimensions</Form.Label>
           <Form.Row controlId="StartProject.Dimensions">
             <Col>
               <Form.Control onChange={this.handleChange} id="length" placeholder="Length (m)" />
             </Col>
             <Col>
-              <Form.Control onChange={this.handleChange} id="width"  placeholder="Width (m)" />
+              <Form.Control onChange={this.handleChange} id="width" placeholder="Width (m)" />
             </Col>
           </Form.Row>
           <Form.Label >Angle</Form.Label>
@@ -49,7 +51,6 @@ class StartProject extends Component {
             controlId="StartProject.Calculate" variant="outline-primary" size="lg" type="submit">Calculate</Button>
         </Form.Group>
       </Form>
-
     );
   }
 }

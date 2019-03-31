@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "^3.0.2",
     "@material-ui/lab": "^3.0.0-alpha.30",
     "bootstrap": "^4.3.1",
     "react": "^16.8.6",
@@ -12,7 +13,8 @@
     "react-google-login": "^5.0.2",
     "react-google-maps": "^9.4.5",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "write-json-file": "^3.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

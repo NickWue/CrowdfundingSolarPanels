@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import home from './home.jpg'
+import home from './home.jpg';
+import crowdsolar from '../crowdsolar.png';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 
 class Home extends Component {
-    state = {
-        
-      };
-   
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     const pageStyle = {
         paddingTop:"100px",
-        // display: 'flex',
+        display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'space-around',
+        alignItems: 'center',
         overflow: 'hidden',
         paddingRight: "10%",
         paddingLeft: "10%",
-        // backgroundImage: `url(${home})`,
-        // backgroundSize:"100%",
-      }
+        backgroundImage: home,
+        backgroundSize:"100%",
+    }
     
     return (
-    <img style={{maxWidth: "100%"}} src={home}></img>
-
+      <Container style={pageStyle}>
+        <Row>
+          <Image src={crowdsolar} fluid />
+        </Row>
+        <Row>
+          <p>We match investors looking for climate impact with landowners.</p>
+        </Row>
+        <Row>
+          <p>Join us!</p>
+        </Row>
+      </Container>
+      
     );
   }
 }
