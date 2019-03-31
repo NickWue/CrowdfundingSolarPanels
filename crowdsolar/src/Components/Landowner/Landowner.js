@@ -63,7 +63,7 @@ class Landowner extends Component {
       '&dimY=' + project.width +
       '&userid=' + this.props.email +
       '&funding_required=' + crowdCost +
-      '&funding_recieved=0' +
+      '&funding_recieved=' + ownerCost +
       '&expectedreturn=' + financial_detail.roi10years
     )
     .then(data => console.log(data));
