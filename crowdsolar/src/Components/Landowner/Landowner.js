@@ -9,13 +9,7 @@ class Landowner extends Component {
     this.state = {
       stage: "welcome",
 
-      name: "",
-      description: "",
-      country: "",
-      city: "",
-      length: "",
-      width: "",
-      angle: "",
+      project: "",
 
       ownerCost: 0,
       crowdCost: 0
@@ -34,18 +28,25 @@ class Landowner extends Component {
     })
   }
 
+  sendProject = (project) => {
+    fetch('http://x10z.de/crowdsolar/addProject/' +
+      '?name=6' + project.name +
+      '&street=nameofthestreet2' +
+      '&countryID=' + project.country +
+      '&dimX=' + project.length +
+      '&dimY=' + project.width +
+      '&userid=' + this.props.email +
+      '&funding_required=5000' +
+      '&funding_recieved=0' +
+      '&expectedreturn=8'
+    )
+  }
+
   setProjectDetails = (project) => {
     this.setState({
       stage: "calculation",
-
-      name: project.name,
-      description: project.description,
-      country: project.country,
-      city: project.city,
-      length: project.length,
-      width: project.width,
-      angle: project.angle
-    });                
+      project: project
+    });
   }
 
   setCost = (ownerCost, crowdCost) => {

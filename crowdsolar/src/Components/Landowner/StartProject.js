@@ -9,8 +9,7 @@ class StartProject extends Component {
     this.state = {
       name: "",
       description: "",
-      country: "Jamaica",
-      city: "",
+      country: "1",
       length: "",
       width: "",
       angle: ""
@@ -36,16 +35,13 @@ class StartProject extends Component {
   
           <Form.Label>Country</Form.Label>
           <Form.Control id="country" onChange={this.handleChange} as="select">
-            <option value="Jamaica">Jamaica</option>
-            <option value="Philippines">Philippines</option>
-            <option value="Peru">Peru</option>
-            <option value="Portugal">Portugal</option>
-            <option value="Germany">Germany</option>
-            <option value="Italy">Italy</option>
+            <option value="1">Jamaica</option>
+            <option value="2">Philippines</option>
+            <option value="3">Peru</option>
+            <option value="4">Portugal</option>
+            <option value="5">Germany</option>
+            <option value="6">Italy</option>
           </Form.Control>
-
-          <Form.Label>City</Form.Label>
-          <Form.Control onChange={this.handleChange} placeholder="Your city"/>          
 
           <Form.Label>Surface dimensions</Form.Label>
           <Form.Row controlId="StartProject.Dimensions">
