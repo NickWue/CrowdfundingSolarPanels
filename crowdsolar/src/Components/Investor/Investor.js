@@ -7,12 +7,6 @@ class Investor extends Component {
     stage: "dashboard",
   };
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
   getPage = stage =>{
     switch(stage) {
       case 'dashboard':
