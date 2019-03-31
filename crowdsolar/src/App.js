@@ -43,7 +43,7 @@ class App extends Component {
       email: "",
       name: "",
       googleId: "" })
-    localStorage.setItem("loginDetails", JSON.stringify(this.state));
+    localStorage.setItem("loginDetails", "null");
     console.log(this.state)  
   }
   render() {
