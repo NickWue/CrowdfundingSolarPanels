@@ -85,7 +85,7 @@ class Landowner extends Component {
           <Card.Text>Name: {project.name}</Card.Text>
         </Card.Body>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>Number of solar cells: {this.state.financial_detail.nsolarcells}</ListGroupItem>
+          <ListGroupItem>Number of solar cells: {this.state.financial_detail.totalnummersolarcells}</ListGroupItem>
           <ListGroupItem>Funding required: {this.state.crowdCost}$</ListGroupItem>
           <ListGroupItem>ROI 10 years: {this.state.financial_detail.roi10years}%</ListGroupItem>
         </ListGroup>
