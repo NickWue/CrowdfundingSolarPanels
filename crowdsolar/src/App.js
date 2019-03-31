@@ -24,7 +24,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-
+    this.getUserData()
+    this.getProjectsData()
+    this.getCountriesData()
     console.log(localStorage.getItem("loginDetails"))
     if(localStorage.getItem("loginDetails") !== "null"){
       this.setState(JSON.parse(localStorage.getItem("loginDetails")))
@@ -60,8 +62,8 @@ class App extends Component {
     localStorage.setItem("loginDetails", JSON.stringify(loginProps));
 
     this.getUserData()
-    console.log(this.state.users)
-
+    this.getProjectsData()
+    this.getCountriesData()
   }
   logOut = () => {
 
