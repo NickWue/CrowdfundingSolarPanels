@@ -3,7 +3,7 @@ INT
 """
 import math
               # max. sun angle 
-aroof = 20              # angle roof 
+aroof = 44              # angle roof 
 rooflenght = 10 
 roofwidth = 5
 l =1                    #length of one solarcell
@@ -23,7 +23,7 @@ if aroof > x:
 else:
     diff = x-aroof
     print('add '+ str(diff) +' ° for perfect alignment - note the shadow')
-    d =(l* math.sin(diff* 3.14/180)*math.cos((aroof+x)* 3.14/180))/math.sin((aroof+x)* 3.14/180)
+    d =(l* math.sin(diff* 3.14/180)*math.cos((aroof+x)* 3.14/180))/math.sin((x-aroof)* 3.14/180)
     print('distance between the modules (in m): '+ str(d))
 
 
