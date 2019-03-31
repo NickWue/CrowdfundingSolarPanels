@@ -5,6 +5,7 @@ import {AppBar, Button, Toolbar} from '@material-ui/core/';
 import GoogleLogin from 'react-google-login';
 import Routes from "./Routes";
 import { timingSafeEqual } from 'crypto';
+import logo from './logo-white.png';
 
 class App extends Component {
   constructor(props){
@@ -91,11 +92,10 @@ class App extends Component {
     }
     return (
       <Fragment >
+        <div className="notthehomepageheader">
       <AppBar position="fixed">
         <Toolbar>
-          <Button  href="/" color="inherit">Home</Button>
-          <Button href="/investor" color="inherit">investor</Button>
-          <Button href="/landowner" color="inherit">landowner</Button>
+          <img style={{width: 200}} src={logo} alt="Logo" />
           <div style={loginStyle}>
           {this.state.loggedIn ?
           <Fragment>
@@ -105,7 +105,7 @@ class App extends Component {
           : 
           <GoogleLogin
             clientId="497920862748-l7vlamhek0bf2e6qhghvnctckljev5qf.apps.googleusercontent.com"
-            buttonText="Login"
+            buttonText="Login / Signup with Google"
             onSuccess={this.loginSuccess}
             onFailure={null}
           />}
@@ -114,7 +114,7 @@ class App extends Component {
       </AppBar>
 
       <Routes loginProps={loginProps}/>
-    
+    </div>
     </Fragment>
     );
   }
