@@ -14,7 +14,7 @@ class Investor extends Component {
             {this.setState({stage: "map"})}
           }/>)
       case 'map':
-        return(<InvestorMap/>)
+        return(<InvestorMap props={this.props}/>)
       default:
         return null;
     }

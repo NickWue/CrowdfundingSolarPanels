@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
-import projects from '../../data/projects.json'
+// import projects from '../../data/projects.json'
 import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
-
 
 const MapWithMarker = withGoogleMap(props =>
   <GoogleMap defaultZoom={4} defaultCenter={{lat: 40, lng: 0}}>
-    {projects.map((project) => (
-      <Marker onClick={() => props.handleChange(project.id)} position={{ lat: project.lat, lng: project.lng }} />
+    {props.projects.map((project) => (
+      <Marker onClick={() => props.handleChange(project.id)} position={{ lat: parseFloat(project.lng) , lng: parseFloat(project.lat)  }} />
     ))}
     
   </GoogleMap>  
@@ -15,7 +14,7 @@ const MapWithMarker = withGoogleMap(props =>
 
 class InvestorMap extends Component {
     state = {
-      currentProject: 1
+      currentProject: this.props.props.projects[0].id
     };
 
     handleChange = (projectid) => {
@@ -25,12 +24,14 @@ class InvestorMap extends Component {
     }
 
     checkProj = (p) => {
+      console.log(p.id === this.state.currentProject)
       return p.id === this.state.currentProject;
     }
 
     getcard = () => {
-      var project = projects.filter(this.checkProj)[0];
+      var project = this.props.props.projects.filter(this.checkProj)[0];
 
+      console.log(project)
       return(
         <Card style={{width: '100%'}}>
           <Card.Body>
@@ -75,15 +76,18 @@ class InvestorMap extends Component {
 
       return (
         <div style={pageStyle}>
-          <h1>Find your next investment</h1>
+          <h1>Find your next investment </h1>
+          
           <div style={leftStyle}>
             {this.getcard()}
           </div>  
           <div style={rightStyle}>
             <MapWithMarker
               handleChange={this.handleChange}
+              projects= {this.props.props.projects}
               containerElement={<div style={{ height: "600px"}} />}
-              mapElement={<div style={{ height: `100%` }} />}
+              mapElement={<div style={{ height: `100%` }}
+               />}
             />
           </div>
          </div>

@@ -54,16 +54,16 @@ class Landowner extends Component {
     .then(data => financial_detail = data)
 
    await fetch('http://x10z.de/crowdsolar/addProject/' +
-    '?name=6' + project.name +
+    '?name=' + project.name +
     '&street=none' +
     '&city=' + 'berlin' +
     '&countryID=' + project.country +
     '&dimX=' + project.length +
     '&dimY=' + project.width +
     '&userid=' + this.props.email +
-    '&funding_required=5000' +
+    '&funding_required=' + financial_detail.Cost +
     '&funding_recieved=0' +
-    '&expectedreturn=8'
+    '&expectedreturn=' + financial_detail.roi10years
   )
   .then(data => console.log(data))
   this.setState({
@@ -82,33 +82,6 @@ class Landowner extends Component {
     });
   }
 
-  makeCalculations = () => {
-    /* INT*/
-    var x= 28;  /* max. sun angle */
-    var aroof = this.state.angle /* angle roof */
-    var rooflenght = this.state.length;
-    var roofwidth = this.state.width;
-    var l =1; //length of one solarcell
-    var w = 0.5; //width of one solarcell
-    
-    /* Main*/
-    if (aroof > x){
-      document.writeln("No callulation necessary - shadow cast does not have to be considered");
-    } else {
-      var diff = x-aroof;
-      document.writeln("add " + diff +" � for perfect alignment - note the shadow");
-      var d =(l*Math.asin(diff* Math.PI/180)*Math.acos((aroof+x)* Math.PI/180))/Math.asin((aroof+x)* Math.PI/180)
-      document.writeln("distance between the modules (in m): "+ d + "<br>");
-
-      var nrooflenght = Math.floor(rooflenght/ (l+d))
-      var nroofwidth = Math.floor(roofwidth/ w);
-
-      document.write("nummer of solarcells in length: " +nrooflenght + "<br>");
-      document.write("nummer of solarcells in width: " +nroofwidth + "<br>");
-      var totalnofs = nrooflenght * nroofwidth;
-      document.write("total nummer of solarcells on this roof: "+ totalnofs);
-    }
-  }
 
   getPage = stage => {
     switch(stage) {
