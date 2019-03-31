@@ -1,3 +1,13 @@
+header{
+    background-color: transparent!important;
+    box-shadow: none!important;
+}
+
+header button {
+    position: absolute;
+    right: 15px;
+}
+
 .App {
   text-align: center;
 }
