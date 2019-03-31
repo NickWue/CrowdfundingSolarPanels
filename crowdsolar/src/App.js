@@ -26,15 +26,27 @@ class App extends Component {
       this.setState(JSON.parse(localStorage.getItem("loginDetails")))
     } 
   }
+  getUserData = () => {
+    fetch('http://x10z.de/crowdsolar/getUser/')
+    .then(response => response.json())
+    .then(data => this.setState({ users: data }));
+  }
 
   loginSuccess = resp => {
     this.setState({ loggedIn: true,
                   email:resp.profileObj.email, 
                   name: resp.profileObj.name,
                   googleId: resp.profileObj.googleId  })
-    localStorage.setItem("loginDetails", JSON.stringify(this.state));
+    const loginProps = {
+      loggedIn: this.state.loggedIn ,
+      email: this.state.email,
+      name: this.state.name,
+      googleId: this.state.googleId
+    }
+    localStorage.setItem("loginDetails", JSON.stringify(loginProps));
 
-  console.log(resp);
+    this.getUserData()
+    console.log(this.state.users)
 
   }
   logOut = () => {

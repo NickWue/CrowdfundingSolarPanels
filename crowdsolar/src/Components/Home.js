@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import home from './home.jpg';
 import crowdsolar from '../crowdsolar.png';
 import { Container, Row, Col, Image } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 class Home extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Home extends Component {
     }
     
     return (
+      <Fragment>
       <Container style={pageStyle}>
         <Row>
           <Image src={crowdsolar} fluid />
@@ -34,8 +36,12 @@ class Home extends Component {
         <Row>
           <p>Join us!</p>
         </Row>
+        
       </Container>
-      
+      <div style={pageStyle}>
+      {this.props.loggedIn ? <Button>Go to dashboard</Button>: <p>Please use the login button in the top right</p>}
+     </div>
+     </Fragment>
     );
   }
 }
