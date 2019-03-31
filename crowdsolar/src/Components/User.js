@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {Form, Button} from 'react-bootstrap';
+import {Form, Col, Button} from 'react-bootstrap';
 
 class Home extends Component {
-    
+    state = {
+        
+      };
    
 
   render() {
@@ -19,18 +21,22 @@ class Home extends Component {
       }
     
     return (
-        <div style={pageStyle}>
         <Form >
         <Form.Group controlId="details.Address">
-          <Form.Label>Name: {this.props.name}</Form.Label>
+          <Form.Label>Estimated Total Price</Form.Label>
           <br/>
-          <Form.Label>Email: {this.props.email}</Form.Label>
-          <br/>
-          <Button href="/" variant="outline-primary" size="lg" type="button">Go Home</Button>
+          <Form.Label>{ "$"  + this.props.totalValue}</Form.Label>
+          
+        <br/>
+        <Form.Label>Your investment: ${this.props.totalValue - this.state.crowdCost}</Form.Label>
+        <br/>
+          <Form.Label>Crowd investment: ${this.state.crowdCost}</Form.Label>
+            <br/>
+          
+          <Button onClick={() => this.props.setCost(this.state.ownerCost, this.state.crowdCost)} variant="outline-primary" size="lg" type="submit">Submit preferences</Button>
         </Form.Group>
 
       </Form>
-      </div>
 
     );
   }

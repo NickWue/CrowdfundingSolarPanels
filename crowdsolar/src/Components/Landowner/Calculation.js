@@ -39,7 +39,7 @@ class Calculation extends Component {
           
           <Button
             onClick={() => this.props.setCost(this.state.ownerCost, this.state.crowdCost)}
-            variant="outline-primary" size="lg" type="button"
+            variant="outline-primary" size="lg" type="submit"
           >
             Submit preferences
           </Button>

@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import LandownerWelcome from './LandownerWelcome';
 import StartProject from './StartProject';
 import Calculation from './Calculation';
-import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
-
 
 class Landowner extends Component {
   constructor(props){
     super(props)
     this.state = {
       stage: "welcome",
-
-      project: "",
-
-      nsolarcells: 0,
-      totalCost: 0,
+      country: "" ,
+      length: "",
+      width: "",
+      angle: "",
       ownerCost: 0,
       crowdCost: 0
     };
@@ -32,41 +29,17 @@ class Landowner extends Component {
     })
   }
 
-  setProjectDetails = async (project) => {
-    
-    var financial_detail;
-    await fetch('http://x10z.de/crowdsolar/getProjectFinancials/' +
-    '?country=' + project.country +
-    '&rooflength=' + project.length +
-    '&roofwidth=' + project.width )
-    .then(response => response.json())
-    .then(data => financial_detail = data)
-
-    
+  setRoofParams = (country, length, width, angle) => {
     this.setState({
       stage: "calculation",
-      project: project,
-      financial_detail: financial_detail
-    });
-    
+      country: country, 
+      length: length,
+      width: width,
+      angle: angle
+    });                
   }
 
-  setCost = async (ownerCost, crowdCost) => {
-    const project = this.state.project;
-    const financial_detail = this.state.financial_detail;
-    await fetch('http://x10z.de/crowdsolar/addProject/' +
-      '?name=' + project.name +
-      '&street=none' +
-      '&city=none' +
-      '&countryID=' + project.country +
-      '&dimX=' + project.length +
-      '&dimY=' + project.width +
-      '&userid=' + this.props.email +
-      '&funding_required=' + crowdCost +
-      '&funding_recieved=' + ownerCost +
-      '&expectedreturn=' + financial_detail.roi10years
-    )
-    .then(data => console.log(data));
+  setCost = (ownerCost, crowdCost) => {
     this.setState({
       stage:"final",
       ownerCost: ownerCost,
@@ -74,24 +47,32 @@ class Landowner extends Component {
     });
   }
 
-  getProjectCard = () => {
-    var project = this.state.project;
+  makeCalculations = () => {
+    /* INT*/
+    var x= 28;  /* max. sun angle */
+    var aroof = this.state.angle /* angle roof */
+    var rooflenght = this.state.length;
+    var roofwidth = this.state.width;
+    var l =1; //length of one solarcell
+    var w = 0.5; //width of one solarcell
+    
+    /* Main*/
+    if (aroof > x){
+      document.writeln("No callulation necessary - shadow cast does not have to be considered");
+    } else {
+      var diff = x-aroof;
+      document.writeln("add " + diff +" � for perfect alignment - note the shadow");
+      var d =(l*Math.asin(diff* Math.PI/180)*Math.acos((aroof+x)* Math.PI/180))/Math.asin((aroof+x)* Math.PI/180)
+      document.writeln("distance between the modules (in m): "+ d + "<br>");
 
-    console.log(project)
-    return(
-      <Card style={{width: '50%'}}>
-        <Card.Body>
-          <Card.Title> Success!</Card.Title>
-          <Card.Text>Name: {project.name}</Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-          <ListGroupItem>Number of solar cells: {this.state.financial_detail.totalnummersolarcells}</ListGroupItem>
-          <ListGroupItem>Funding required: {this.state.crowdCost}$</ListGroupItem>
-          <ListGroupItem>ROI 10 years: {this.state.financial_detail.roi10years}%</ListGroupItem>
-        </ListGroup>
-      </Card>
-      
-    );
+      var nrooflenght = Math.floor(rooflenght/ (l+d))
+      var nroofwidth = Math.floor(roofwidth/ w);
+
+      document.write("nummer of solarcells in length: " +nrooflenght + "<br>");
+      document.write("nummer of solarcells in width: " +nroofwidth + "<br>");
+      var totalnofs = nrooflenght * nroofwidth;
+      document.write("total nummer of solarcells on this roof: "+ totalnofs);
+    }
   }
 
   getPage = stage => {
@@ -99,11 +80,11 @@ class Landowner extends Component {
       case 'welcome':
         return(<LandownerWelcome startProject={this.setStart}/>)
       case 'start':
-        return(<StartProject setProjectDetails={this.setProjectDetails}/>)
+        return(<StartProject setRoofParams={this.setRoofParams}/>)
       case 'calculation':
-        return(<Calculation setCost={this.setCost} totalValue={parseInt(this.state.financial_detail.Cost)}/>)
+        return(<Calculation setCost={this.setCost} totalValue={5000}/>)
       case 'final':
-        return(this.getProjectCard());
+        return(this.state.country);
       default:
         return null;
     }

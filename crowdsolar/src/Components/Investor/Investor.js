@@ -6,17 +6,15 @@ class Investor extends Component {
   state = {
     stage: "dashboard",
   };
-  changeStage = stage => {
-    this.setState({stage: stage})
-  }
+
   getPage = stage =>{
     switch(stage) {
       case 'dashboard':
-        return(<InvestorDashboard props={this.props } showMap={() => 
+        return(<InvestorDashboard showMap={() => 
             {this.setState({stage: "map"})}
           }/>)
       case 'map':
-        return(<InvestorMap changeStage={this.changeStage} props={this.props}/>)
+        return(<InvestorMap/>)
       default:
         return null;
     }
