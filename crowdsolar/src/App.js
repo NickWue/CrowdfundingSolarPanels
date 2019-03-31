@@ -4,25 +4,27 @@ import './App.css';
 import {AppBar, Button, Toolbar} from '@material-ui/core/';
 import GoogleLogin from 'react-google-login';
 import Routes from "./Routes";
-import UserProfile from './UserProfile.json';
+import { timingSafeEqual } from 'crypto';
 
-var fs = require("fs");
-    
-var writeToStorage = function(object) { 
-  fs.writeFile("./UserProfile.json", JSON.stringify(object), (err) => {
-      if (err) {
-          console.error(err);
-          return;
-      };
-      console.log("File has been created");
-  });
-}
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      UserProfile
-    };
+    
+      this.state = {loggedIn: false ,
+        email: "",
+        name: "",
+        googleId: "" };
+    
+    
+
+  }
+
+  componentDidMount() {
+
+    console.log(localStorage.getItem("loginDetails"))
+    if(localStorage.getItem("loginDetails") !== "null"){
+      this.setState(JSON.parse(localStorage.getItem("loginDetails")))
+    } 
   }
 
   loginSuccess = resp => {
@@ -30,8 +32,8 @@ class App extends Component {
                   email:resp.profileObj.email, 
                   name: resp.profileObj.name,
                   googleId: resp.profileObj.googleId  })
-    
-    writeToStorage(this.state)
+    localStorage.setItem("loginDetails", JSON.stringify(this.state));
+
   console.log(resp);
 
   }
@@ -41,8 +43,7 @@ class App extends Component {
       email: "",
       name: "",
       googleId: "" })
-    UserProfile.writeToStorage(this.state)
-
+    localStorage.setItem("loginDetails", JSON.stringify(this.state));
     console.log(this.state)  
   }
   render() {
