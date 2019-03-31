@@ -13,8 +13,7 @@
     "react-google-login": "^5.0.2",
     "react-google-maps": "^9.4.5",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8",
-    "write-json-file": "^3.1.0"
+    "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
