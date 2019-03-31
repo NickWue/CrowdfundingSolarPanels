@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 import projects from '../../data/projects.json'
 import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
-import solarpanel from './solarpanel.jpeg';
+
 
 const MapWithMarker = withGoogleMap(props =>
   <GoogleMap defaultZoom={4} defaultCenter={{lat: 40, lng: 0}}>
-    {projects.map((project)=>(
-      <Marker  onClick={() => props.handleChange(project.id)} position={{ lat: project.lat, lng: project.lng }} />
+    {projects.map((project) => (
+      <Marker onClick={() => props.handleChange(project.id)} position={{ lat: project.lat, lng: project.lng }} />
     ))}
     
   </GoogleMap>  
@@ -15,13 +15,42 @@ const MapWithMarker = withGoogleMap(props =>
 
 class InvestorMap extends Component {
     state = {
-      currentProject: null
+      currentProject: 1
     };
-    handleChange = id => {
+
+    handleChange = (projectid) => {
       this.setState({
-        currentProject: id
+        currentProject: projectid
       });
     }
+
+    checkProj = (p) => {
+      return p.id === this.state.currentProject;
+    }
+
+    getcard = () => {
+      var project = projects.filter(this.checkProj)[0];
+
+      return(
+        <Card style={{width: '100%'}}>
+          <Card.Body>
+            <Card.Title> {project.name}</Card.Title>
+            <Card.Text>This project is in {project.city}.</Card.Text>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            {/* <ListGroupItem>Status: {project.status}</ListGroupItem> */}
+            <ListGroupItem>Funding required: {project.funding_required}$</ListGroupItem>
+            <ListGroupItem>Funding received: {project.funding_received}$</ListGroupItem>
+            <ListGroupItem>Return on investment: ...</ListGroupItem>
+            <ListGroupItem>
+              <Button variant="outline-primary" type="submit">Invest</Button>
+            </ListGroupItem>
+          </ListGroup>
+        </Card>
+        
+      );
+    }
+    
     render() {
       const pageStyle = {
           paddingTop:"100px",
@@ -32,30 +61,23 @@ class InvestorMap extends Component {
           paddingRight: "10%",
           paddingLeft: "10%"
       }
-      const rightStyle = {
-        float: "right",
-        width: "40%",
-        paddingLeft: '2%'
-      }
+
       const leftStyle = {
         float: "left",
+        width: "40%",
+        paddingRight: '2%'
+      }
+
+      const rightStyle = {
+        float: "right",
         width: "60%"
       }
+
       return (
         <div style={pageStyle}>
-          <h1>Find new project {this.state.currentProject}</h1>
+          <h1>Find your next investment</h1>
           <div style={leftStyle}>
-          <Card style={{width: '100%'}}>
-            <Card.Img variant="top" src={solarpanel}/>
-            <Card.Body>
-              <Card.Title>Morocco</Card.Title>
-              <Card.Text>This is a description</Card.Text>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>Status: <mark style={{color: 'Orange'}}>Building</mark></ListGroupItem>
-              <ListGroupItem>Return on investment: 10% per year</ListGroupItem>
-            </ListGroup>
-          </Card>
+            {this.getcard()}
           </div>  
           <div style={rightStyle}>
             <MapWithMarker
