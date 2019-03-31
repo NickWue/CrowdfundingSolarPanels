@@ -33,6 +33,7 @@ class Landowner extends Component {
   }
 
   setProjectDetails = async (project) => {
+    
     var financial_detail;
     await fetch('http://x10z.de/crowdsolar/getProjectFinancials/' +
     '?country=' + project.country +
@@ -53,7 +54,6 @@ class Landowner extends Component {
   setCost = async (ownerCost, crowdCost) => {
     const project = this.state.project;
     const financial_detail = this.state.financial_detail;
-
     await fetch('http://x10z.de/crowdsolar/addProject/' +
       '?name=' + project.name +
       '&street=none' +

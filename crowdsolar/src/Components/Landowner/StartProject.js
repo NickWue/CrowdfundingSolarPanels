@@ -28,10 +28,10 @@ class StartProject extends Component {
       <Form>
         <Form.Group>
           <Form.Label>Project name</Form.Label>
-          <Form.Control onChange={this.handleChange} placeholder="Solar panels on my roof"/>
+          <Form.Control onChange={this.handleChange} id="name" placeholder="Solar panels on my roof"/>
 
           <Form.Label>Project description</Form.Label>
-          <Form.Control onChange={this.handleChange} placeholder="Short description"/>
+          <Form.Control onChange={this.handleChange} id="description" placeholder="Short description"/>
   
           <Form.Label>Country</Form.Label>
           <Form.Control id="country" onChange={this.handleChange} as="select">
