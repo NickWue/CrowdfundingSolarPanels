@@ -44,7 +44,7 @@ class StartProject extends Component {
           </Form.Control>
 
           <Form.Label>Surface dimensions</Form.Label>
-          <Form.Row controlId="StartProject.Dimensions">
+          <Form.Row>
             <Col>
               <Form.Control onChange={this.handleChange} id="length" placeholder="Length (m)" />
             </Col>
@@ -53,12 +53,12 @@ class StartProject extends Component {
             </Col>
           </Form.Row>
           <Form.Label >Angle</Form.Label>
-          <Form.Control controlId="StartProject.Angle" onChange={this.handleChange} id="angle"  placeholder="Angle of surface"/>
+          <Form.Control onChange={this.handleChange} id="angle"  placeholder="Angle of surface"/>
           
           <br/>
 
           <Button onClick={() => this.props.setProjectDetails(this.state)}
-            variant="outline-primary" size="lg" type="submit">Calculate</Button>
+            variant="outline-primary" size="lg" type="button">Calculate</Button>
         </Form.Group>
       </Form>
     );

@@ -11,6 +11,8 @@ class Landowner extends Component {
 
       project: "",
 
+      nsolarcells: 0,
+      totalCost: 0,
       ownerCost: 0,
       crowdCost: 0
     };
@@ -28,25 +30,48 @@ class Landowner extends Component {
     })
   }
 
-  sendProject = (project) => {
-    fetch('http://x10z.de/crowdsolar/addProject/' +
-      '?name=6' + project.name +
-      '&street=nameofthestreet2' +
-      '&countryID=' + project.country +
-      '&dimX=' + project.length +
-      '&dimY=' + project.width +
-      '&userid=' + this.props.email +
-      '&funding_required=5000' +
-      '&funding_recieved=0' +
-      '&expectedreturn=8'
-    )
+   sendProject =   (project) => {
+    
+   
   }
 
-  setProjectDetails = (project) => {
-    this.setState({
-      stage: "calculation",
-      project: project
-    });
+  getProjectFinance = (project) => {
+    
+  }
+
+  setProjectDetails = async (project) => {
+    // this.getProjectFinance(project)
+    
+    
+    // this.sendProject(project)
+
+    var financial_detail;
+    await fetch('http://x10z.de/crowdsolar/getProjectFinancials/' +
+    '?country=' + project.country +
+    '&rooflength=' + project.length +
+    '&roofwidth=' + project.width )
+    .then(response => response.json())
+    .then(data => financial_detail = data)
+
+   await fetch('http://x10z.de/crowdsolar/addProject/' +
+    '?name=6' + project.name +
+    '&street=none' +
+    '&city=' + 'berlin' +
+    '&countryID=' + project.country +
+    '&dimX=' + project.length +
+    '&dimY=' + project.width +
+    '&userid=' + this.props.email +
+    '&funding_required=5000' +
+    '&funding_recieved=0' +
+    '&expectedreturn=8'
+  )
+  .then(data => console.log(data))
+  this.setState({
+    stage: "calculation",
+    project: project,
+    financial_detail: financial_detail
+  });
+    
   }
 
   setCost = (ownerCost, crowdCost) => {
@@ -92,9 +117,9 @@ class Landowner extends Component {
       case 'start':
         return(<StartProject setProjectDetails={this.setProjectDetails}/>)
       case 'calculation':
-        return(<Calculation setCost={this.setCost} totalValue={5000}/>)
+        return(<Calculation setCost={this.setCost} totalValue={this.state.financial_detail.Cost}/>)
       case 'final':
-        return(this.state.country);
+        return('Success!');
       default:
         return null;
     }
