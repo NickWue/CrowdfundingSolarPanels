@@ -68,7 +68,7 @@ class Home extends Component {
       <Container id="main-frame">
 
         <Row id="slogan">
-          <p>Invest in solar panel projects in regions <br/>that actually make sense.</p>
+          <p>Invest in solar panel projects in regions that actually make sense.</p>
         </Row>
 
         
