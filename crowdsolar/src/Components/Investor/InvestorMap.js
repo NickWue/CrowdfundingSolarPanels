@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
-// import projects from '../../data/projects.json'
-import {Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
+import {Form, Card, ListGroup, ListGroupItem, Button} from 'react-bootstrap/';
+
 
 const MapWithMarker = withGoogleMap(props =>
   <GoogleMap defaultZoom={4} defaultCenter={{lat: 40, lng: 0}}>
@@ -14,7 +14,8 @@ const MapWithMarker = withGoogleMap(props =>
 
 class InvestorMap extends Component {
     state = {
-      currentProject: this.props.props.projects[0].id
+      currentProject: this.props.props.projects[0].id,
+      investing: "0"
     };
 
     handleChange = (projectid) => {
@@ -27,6 +28,21 @@ class InvestorMap extends Component {
       console.log(p.id === this.state.currentProject)
       return p.id === this.state.currentProject;
     }
+    addInvestment = ( project, amount) => {
+      fetch('http://x10z.de/crowdsolar/addInvestment/' +
+      '?userid=' + this.props.props.email +
+      "&projectid=" + project.id +
+      "&amount=" + amount
+    )
+    .then(data => console.log(data));
+    this.props.props.history.push('/investor')
+    }
+
+    handleChangea = event => {
+      this.setState({
+        [event.target.id]: event.target.value
+      });
+    }
 
     getcard = () => {
       var project = this.props.props.projects.filter(this.checkProj)[0];
@@ -36,15 +52,17 @@ class InvestorMap extends Component {
         <Card style={{width: '100%'}}>
           <Card.Body>
             <Card.Title> {project.name}</Card.Title>
-            <Card.Text>This project is in {project.city}.</Card.Text>
+            <Card.Text>This project is in {project.country}.</Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
             {/* <ListGroupItem>Status: {project.status}</ListGroupItem> */}
             <ListGroupItem>Funding required: {project.funding_required}$</ListGroupItem>
             <ListGroupItem>Funding received: {project.funding_received}$</ListGroupItem>
             <ListGroupItem>Return on investment: ...</ListGroupItem>
+            <ListGroupItem>Amount to invest: <Form.Control onChange={this.handleChangea} id="investing" placeholder="enter $ amount here"/></ListGroupItem>
+
             <ListGroupItem>
-              <Button variant="outline-primary" type="submit">Invest</Button>
+              <Button onClick={() => this.addInvestment(project, this.state.investing)} variant="outline-primary" type="submit">Invest</Button>
             </ListGroupItem>
           </ListGroup>
         </Card>
