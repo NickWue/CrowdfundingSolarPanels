@@ -35,7 +35,7 @@ class InvestorMap extends Component {
       "&amount=" + amount
     )
     .then(data => console.log(data));
-    this.props.props.history.push('/investor')
+    this.props.changeStage('dashboard')
     }
 
     handleChangea = event => {
