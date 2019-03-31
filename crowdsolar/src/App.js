@@ -4,30 +4,47 @@ import './App.css';
 import {AppBar, Button, Toolbar} from '@material-ui/core/';
 import GoogleLogin from 'react-google-login';
 import Routes from "./Routes";
-import UserProfile from './UserProfile';
+import UserProfile from './UserProfile.json';
 
+var fs = require("fs");
+    
+var writeToStorage = function(object) { 
+  fs.writeFile("./UserProfile.json", JSON.stringify(object), (err) => {
+      if (err) {
+          console.error(err);
+          return;
+      };
+      console.log("File has been created");
+  });
+}
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      loggedIn: false ,
-      email: null,
-      name: null,
-      googleId: null
+      UserProfile
     };
   }
-  async componentDidMount() {
-    
-  }
+
   loginSuccess = resp => {
     this.setState({ loggedIn: true,
                   email:resp.profileObj.email, 
                   name: resp.profileObj.name,
                   googleId: resp.profileObj.googleId  })
+    
+    writeToStorage(this.state)
   console.log(resp);
 
   }
+  logOut = () => {
 
+    this.setState({loggedIn: false ,
+      email: "",
+      name: "",
+      googleId: "" })
+    UserProfile.writeToStorage(this.state)
+
+    console.log(this.state)  
+  }
   render() {
     const loginStyle ={
       position: "absolute",
@@ -48,8 +65,13 @@ class App extends Component {
           <Button href="/investor" color="inherit">investor</Button>
           <Button href="/landowner" color="inherit">landowner</Button>
           <div style={loginStyle}>
-          {this.state.loggedIn ? <Button href="/user" color="inherit">{this.state.name}</Button>
-          : <GoogleLogin
+          {this.state.loggedIn ?
+          <Fragment>
+            <Button href="/user" color="inherit">{this.state.name}</Button>
+            <Button onClick={this.logOut} href="/" color="inherit">Log Out</Button>
+          </Fragment>
+          : 
+          <GoogleLogin
             clientId="497920862748-l7vlamhek0bf2e6qhghvnctckljev5qf.apps.googleusercontent.com"
             buttonText="Login"
             onSuccess={this.loginSuccess}

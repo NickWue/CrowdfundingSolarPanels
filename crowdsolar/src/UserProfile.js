@@ -1,8 +1,21 @@
+import { func } from "prop-types";
+
 var UserProfile = (function() {
-    var loggedIn = "";
+    var loggedIn = false;
     var email = "";
     var name = "";
     var googleId = "";
+    var fs = require("fs");
+    
+    var writeToStorage = function(object) { 
+      fs.writeFile("./UserProfile.json", JSON.stringify(object), (err) => {
+          if (err) {
+              console.error(err);
+              return;
+          };
+          console.log("File has been created");
+      });
+    }
 
     var getLoggedIn = function() {
       return loggedIn;    // Or pull this from cookie/localStorage
@@ -10,6 +23,12 @@ var UserProfile = (function() {
   
     var setLoggedIn = function(loggedIn_) {
       loggedIn = loggedIn_;     
+      if(loggedIn_ === false){
+         email = "";
+         name = "";
+         googleId = "";
+      }
+
       // Also set this in cookie/localStorage
     };
 
@@ -48,7 +67,8 @@ var UserProfile = (function() {
         getName: getName,
         setName: setName,
         getGoogleId: getGoogleId,
-        setGoogleId: setGoogleId
+        setGoogleId: setGoogleId,
+        writeToStorage: writeToStorage
     }
   
   })();
