@@ -1,43 +1,48 @@
 import React, { Component } from 'react';
-import {Form, Col, Button} from 'react-bootstrap';
+import {Form, Button} from 'react-bootstrap';
 import Slider from '@material-ui/lab/Slider';
 
 class Calculation extends Component {
-    state = {
-        crowdCost: this.props.totalValue/2 ,
-        ownerCost: this.props.totalValue/2,
-      };
-    handleChange = (event, crowdCost) => {
-    this.setState({ crowdCost: crowdCost, ownerCost: this.props.totalValue - crowdCost});
-    };
+  state = {
+    crowdCost: this.props.totalValue/2,
+    ownerCost: this.props.totalValue/2,
+  };
+  
+  handleChange = (event, crowdCost) => {  // Do you need event? Also, can we rename handleChange to changeSlider?
+    this.setState({
+      crowdCost: crowdCost,
+      ownerCost: this.props.totalValue - crowdCost
+    });
+  };
 
   render() {
-    
-    
     return (
-      <Form >
-        <Form.Group controlId="details.Address">
+      <Form>
+        <Form.Group>
           <Form.Label>Estimated Total Price</Form.Label>
           <br/>
           <Form.Label>{ "$"  + this.props.totalValue}</Form.Label>
           <Slider
-          value={this.state.crowdCost}
-          min={0}
-          max={this.props.totalValue}
-          step={1}
-          onChange={this.handleChange}
-        />
-        <br/>
-        <Form.Label>Your investment: ${this.props.totalValue - this.state.crowdCost}</Form.Label>
-        <br/>
+            value={this.state.crowdCost}
+            min={0}
+            max={this.props.totalValue}
+            step={1}
+            onChange={this.handleChange}
+          />
+          <br/>
+          <Form.Label>Your investment: ${this.props.totalValue - this.state.crowdCost}</Form.Label>
+          <br/>
           <Form.Label>Crowd investment: ${this.state.crowdCost}</Form.Label>
-            <br/>
+          <br/>
           
-          <Button onClick={() => this.props.setCost(this.state.ownerCost, this.state.crowdCost)} variant="outline-primary" size="lg" type="submit">Submit preferences</Button>
+          <Button
+            onClick={() => this.props.setCost(this.state.ownerCost, this.state.crowdCost)}
+            variant="outline-primary" size="lg" type="submit"
+          >
+            Submit preferences
+          </Button>
         </Form.Group>
-
       </Form>
-
     );
   }
 }
